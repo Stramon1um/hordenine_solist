@@ -21,7 +21,7 @@ library(kableExtra)
 
 ---
 
-### Adsorbimento
+#### Adsorbimento
 ```{r include=FALSE}
 #setwd("~/Dropbox/Dottorato Mauro Maver/papers/Hordenina/dati_csv")
 
@@ -85,7 +85,7 @@ g    <- summary(redlich)$coefficients[2,1]
 ar    <- summary(redlich)$coefficients[3,1]
 ```
 
-#### Final Plot
+### Fig 1 - Adsorption isotherms plot
 ```{r echo=FALSE, fig.align='center', fig.height=7, fig.width=10, warning=FALSE}
 
 f_freu <- function(x, Kf, n) {
@@ -132,7 +132,7 @@ ggplot(data = adso, aes(x = X, y = Y))+
 
 ```
 <P style="page-break-before: always">
-### Time Course 24h
+### Fig 2 - Time Course 24h
 ```{r echo=FALSE, fig.align='center', fig.height=11, fig.width=10, message=FALSE, warning=FALSE}
 
 TC_24<-read.csv('TC_24h.csv',header = TRUE, sep=";")
@@ -159,7 +159,7 @@ ggplot(TC_24, aes(time, avg, group=1))+
         strip.text = element_text(size = 13, face = "bold"))
 ```
 <P style="page-break-before: always">
-### Time Course 8 days
+### Fig 3 - Time Course 8 days
 ```{r echo=FALSE, fig.align='center', fig.height=11, fig.width=10, message=FALSE, warning=FALSE}
 
 TC_8<-read.csv('TC_8d.csv',header = TRUE, sep=";")
@@ -188,7 +188,7 @@ ggplot(TC_8, aes(time, avg, group=1))+
 
 ---
 <P style="page-break-before: always">
-### Time Course Nutrients Deficiency
+### Fig 4 - Time Course in Nutrients Deficiency
 ```{r echo=FALSE, fig.align='center', fig.height=11, fig.width=10, warning=FALSE}
 
 TC_carenze<-read.csv('TC_carenze.csv',header = TRUE, sep=";")
@@ -219,7 +219,7 @@ ggplot(TC_carenze, aes(time, avg))+
         strip.text = element_text(size = 13, face = "bold"))
 ```
 <P style="page-break-before: always">
-### Time Course Nutrients Deficiency Metabolomic
+### Fig 5 - Targeted metabolomic of Time Course in Nutrients Deficiency
 ```{r echo=FALSE, fig.align='center', fig.height=11, fig.width=10, warning=FALSE}
 
 TC_metabolomica<-read.csv('TC_metabolomica.csv',header = TRUE, sep=";")
@@ -243,7 +243,7 @@ ggplot(cdata_metab, aes(x=treatment, y=mean))+
                 position=position_dodge(0.9))+
   facet_wrap(~compound_order, nrow = 2)+
   #facet_grid(rows = 1)+
-  ggtitle ("Time course Targeted Metabolomica (Ultimo campionamento TC)")+
+  ggtitle ("Time course Targeted Metabolomic (Ultimo campionamento TC)")+
   ylab("Mean (Area)")+
   #ylim(0,15)+
   xlab("Deficiency")+
@@ -253,7 +253,7 @@ ggplot(cdata_metab, aes(x=treatment, y=mean))+
         axis.text.y = element_text(size=11))
 ```
 <P style="page-break-before: always">
-### Time Course Nutrients Deficiency Fold Change Biosynthesis
+### Fig 6 - Untargeted metabolomic (Fold Change Biosynthesis) of Time Course in Nutrients Deficiency 
 ```{r echo=FALSE, fig.align='center', fig.height=9, fig.width=10, warning=FALSE, }
 
 TC_FC_metabolomica<-read.csv('Fold_change_metabolomica_carenze.csv',header = TRUE, sep=";")
@@ -274,10 +274,11 @@ ggplot(sum_FC_meta, aes(category, sum_FC, fill=treatment))+
   theme_bw()+
   scale_fill_discrete(name = "   ")+
   coord_flip()+
-  theme(legend.text = element_text(size = 12))
+  theme(legend.text = element_text(size = 12),
+        axis.text = element_text(size = 11))
 ```
 
-### Root Exudates
+### Table 1 - Root Exudates
 ```{r echo=FALSE, fig.align='center', fig.height=9, fig.width=10, warning=FALSE}
 
 tab_exu<-read.csv('TC_exudates.csv',header = TRUE, sep=";")
