@@ -1,7 +1,7 @@
 ---
 title: "Hordenine cv Solist - Report"
 author: "Mauro Maver"
-date: "2/3/2021"
+date: "19/4/2021"
 output: 
   html_document:
     toc: true
@@ -13,10 +13,9 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 
 library(ggplot2)
-library(gridExtra)
-library(grid)
 library(plyr)
 library(kableExtra)
+library(cowplot)
 ```
 
 ---
@@ -253,6 +252,7 @@ ggplot(cdata_metab, aes(x=treatment, y=mean))+
         axis.text.y = element_text(size=11))
 ```
 <P style="page-break-before: always">
+
 ### Fig 6 - Untargeted metabolomic (Fold Change Biosynthesis) of Time Course in Nutrients Deficiency 
 ```{r echo=FALSE, fig.align='center', fig.height=9, fig.width=10, warning=FALSE, }
 
@@ -266,7 +266,7 @@ sum_FC_meta <- ddply(TC_FC_metabolomica, c("category","treatment"), summarise,
 
 #sum_FC_meta
 
-ggplot(sum_FC_meta, aes(category, sum_FC, fill=treatment))+
+SUM_FC_1<-ggplot(sum_FC_meta, aes(category, sum_FC, fill=treatment))+
   geom_bar(position=position_dodge2(), stat="identity")+
   ggtitle("Biosynthesis datatable - Sum FC ultimo campionamento TC")+
   xlab("Category")+
@@ -276,7 +276,41 @@ ggplot(sum_FC_meta, aes(category, sum_FC, fill=treatment))+
   coord_flip()+
   theme(legend.text = element_text(size = 12),
         axis.text = element_text(size = 11))
+
+## SECONDARY METABOLITES
+
+TC_FC_metabolomica_II<-read.csv('Fold_change_metabolomica_carenze_II.csv',header = TRUE, sep=";")
+
+#sapply(TC_FC_metabolomica, class)
+
+sum_FC_meta_II <- ddply(TC_FC_metabolomica_II, c("category","treatment"), summarise,
+                    N = sum(!is.na(Log_FC)),
+                    sum_FC = sum(Log_FC, na.rm=TRUE))
+
+#sum_FC_meta
+
+SUM_FC_2<-ggplot(sum_FC_meta_II, aes(category, sum_FC, fill=treatment))+
+  geom_bar(position=position_dodge2(), stat="identity")+
+  #ggtitle("Biosynthesis datatable - Sum FC ultimo campionamento TC")+
+  xlab("Category")+
+  ylab("Sum Fold Change")+
+  theme_bw()+
+  scale_fill_discrete(name = "   ")+
+  #coord_flip()+
+  theme(legend.text = element_text(size = 12),
+        axis.text = element_text(size = 11),
+        axis.text.x = element_text(angle = -15, hjust = 0))
+
+plot_grid(SUM_FC_1,SUM_FC_2,
+  nrow = 2,
+  labels = "AUTO",
+  label_size = 22,
+  align = "v",
+  rel_heights = c(2, 1)
+)
 ```
+
+<P style="page-break-before: always">
 
 ### Table 1 - Root Exudates
 ```{r echo=FALSE, fig.align='center', fig.height=9, fig.width=10, warning=FALSE}
