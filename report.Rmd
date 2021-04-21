@@ -1,7 +1,7 @@
 ---
 title: "Hordenine cv Solist - Report"
 author: "Mauro Maver"
-date: "19/4/2021"
+date: "21/4/2021"
 output: 
   html_document:
     toc: true
@@ -188,7 +188,7 @@ ggplot(TC_8, aes(time, avg, group=1))+
 ---
 <P style="page-break-before: always">
 ### Fig 4 - Time Course in Nutrients Deficiency
-```{r echo=FALSE, fig.align='center', fig.height=11, fig.width=10, warning=FALSE}
+```{r echo=FALSE, fig.align='center', fig.height=9, fig.width=10, warning=FALSE}
 
 TC_carenze<-read.csv('TC_carenze.csv',header = TRUE, sep=";")
 
@@ -216,7 +216,22 @@ ggplot(TC_carenze, aes(time, avg))+
         legend.title = element_blank(),
         legend.text = element_text(size = 13),
         strip.text = element_text(size = 13, face = "bold"))
+
+tab_stat_fig_4<-read.csv('tab_stat_fig_4.csv',header = TRUE, sep=";")
+
+colnames(tab_stat_fig_4)<-c("","3h","27h","51h","75h","","3h","27h","51h","75h","","3h","27h","51h","75h")
+
+knitr::kable(tab_stat_fig_4,escape = FALSE) %>%
+  kable_styling(bootstrap_options = "striped", full_width = T, font_size = 11, position = "center") %>%
+  row_spec(1:6, align = "", color ="black", bold = FALSE) %>%
+  row_spec(0, align = "", color ="black", bold = TRUE) %>%
+  row_spec(1, align = "", color ="black", font_size = 7) %>%
+  column_spec(c(1,6,11), bold = "TRUE") %>%
+  column_spec(c(6,11), border_left = TRUE) %>%
+  add_header_above(c("Tyramine" = 5, "NMT" = 5, "Hordenine" = 5), bold = TRUE, font_size = 13)
+
 ```
+
 <P style="page-break-before: always">
 ### Fig 5 - Targeted metabolomic of Time Course in Nutrients Deficiency
 ```{r echo=FALSE, fig.align='center', fig.height=11, fig.width=10, warning=FALSE}
