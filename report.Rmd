@@ -165,7 +165,7 @@ TC_8<-read.csv('TC_8d.csv',header = TRUE, sep=";")
 
 #sapply(TC_8, class)
 
-TC_8$time <- as.factor(TC_8$time) #o evito questa conversione oppure lascio GROUP=1 in ggplot
+#TC_8$time <- as.factor(TC_8$time) #o evito questa conversione oppure lascio GROUP=1 in ggplot
 
 TC_8$molecule_order = factor(TC_8$molecule, levels = c("tyramine", "NMT", "hordenine"))
 
@@ -177,6 +177,7 @@ ggplot(TC_8, aes(time, avg, group=1))+
                 position=position_dodge(0.9))+
   geom_smooth(method = lm,se=TRUE, aes(group=1),color="black")+
   facet_wrap(~molecule_order, nrow = 3, scales = "free_y")+
+  scale_x_continuous(breaks = seq(0, 170, by = 24))+
   ggtitle("Time course 8 days")+
   ylab(bquote(''*mu~ 'mol' ~g^-1*'FW'))+
   xlab("hours")+
