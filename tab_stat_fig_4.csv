@@ -2,6 +2,6 @@
 ;P=0.595;P<0.089;P<0.001;P<0.001;;P=0.118;P<0.001;P<0.001;P<0.001;;P=0.015;P<0.001;P<0.001;P<0.001
 C;a;ab;b;b;C;ab;bc;b;d;C;bc;d;b;c
 -Fe;a;b;b;a;-Fe;b;c;b;bc;-Fe;bc;cd;b;b
--N;a;a;b;a;-N;b;a;ab;b;-N;c;ab;b;b
--P;a;ab;b;a;-P;a;b;a;a;-P;a;a;a;a
--S;a;a;a;ab;-S;ab;b;a;bc;-S;ab;bc;b;c
+-S;a;a;b;a;-S;b;a;ab;b;-S;c;ab;b;b
+-N;a;ab;b;a;-N;a;b;a;a;-N;a;a;a;a
+-P;a;a;a;ab;-P;ab;b;a;bc;-P;ab;bc;b;c
